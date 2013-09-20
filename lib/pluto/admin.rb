@@ -19,5 +19,5 @@ end  # module PlutoAdmin
 
 puts PlutoAdmin.banner    # say hello
 
-puts "[boot] plut-admin root: #{PlutAdmin.root}"
+puts "[boot] pluto-admin root: #{PlutoAdmin.root}"
 

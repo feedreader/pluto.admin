@@ -16,3 +16,10 @@ tmp
 .yardoc
 _yardoc
 doc/
+
+
+# ignore sqlite planet dbs in root folder (used for testing)
+
+pluto.db
+planet.db
+
