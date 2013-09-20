@@ -1,0 +1,6 @@
+History.md
+Manifest.txt
+README.md
+Rakefile
+lib/pluto/admin.rb
+lib/pluto/admin/version.rb
