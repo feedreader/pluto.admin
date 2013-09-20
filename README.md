@@ -3,8 +3,8 @@
 planet web admin - sintara web app ready to get mounted into your web app
 
 
-* home  :: [github.com/rubylibs/pluto.admin](https://github.com/rubylibs/pluto.admin)
-* bugs  :: [github.com/rubylibs/pluto.admin/issues](https://github.com/rubylibs/pluto.admin/issues)
+* home  :: [github.com/feedreader/pluto.admin](https://github.com/feedreader/pluto.admin)
+* bugs  :: [github.com/feedreader/pluto.admin/issues](https://github.com/feedreader/pluto.admin/issues)
 * gem   :: [rubygems.org/gems/pluto-admin](https://rubygems.org/gems/pluto-admin)
 * rdoc  :: [rubydoc.info/gems/pluto-admin](http://rubydoc.info/gems/pluto-admin)
 
@@ -23,7 +23,6 @@ All together - `config.ru` (see `planet.live`):
 
 ~~~
 map '/' do
-
   run Planet
   map '/db' do
     run PlutoAdmin::Server
@@ -34,5 +33,5 @@ end
 
 ## License
 
-The `pluto` scripts are dedicated to the public domain.
+The `pluto.admin` scripts are dedicated to the public domain.
 Use it as you please with no restrictions whatsoever.
