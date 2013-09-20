@@ -3,4 +3,15 @@ Manifest.txt
 README.md
 Rakefile
 lib/pluto/admin.rb
+lib/pluto/admin/public/feed-icon-10x10.png
+lib/pluto/admin/public/style.css
+lib/pluto/admin/server.rb
 lib/pluto/admin/version.rb
+lib/pluto/admin/views/_debug.erb
+lib/pluto/admin/views/_version.erb
+lib/pluto/admin/views/debug.erb
+lib/pluto/admin/views/feeds.erb
+lib/pluto/admin/views/items.erb
+lib/pluto/admin/views/layout.erb
+lib/pluto/admin/views/sites.erb
+lib/pluto/admin/views/timeline.erb
