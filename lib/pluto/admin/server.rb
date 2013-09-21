@@ -81,7 +81,7 @@ class Server < Sinatra::Base
   # Controllers / Routing / Request Handlers
 
   get '/' do
-    redirect( sites_path )
+    redirect( feeds_path )
   end
 
   get '/sites' do
