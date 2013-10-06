@@ -37,7 +37,10 @@ end
 The `pluto.admin` scripts are dedicated to the public domain.
 Use it as you please with no restrictions whatsoever.
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6ee12b29e4e6928abc206e57f93cb63d248c6ffe
 ## Questions? Comments?
 
 Send them along to the [Planet Pluto and Friends Forum/Mailing List](http://groups.google.com/group/feedreader).
