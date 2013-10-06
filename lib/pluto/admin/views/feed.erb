@@ -1,0 +1,100 @@
+
+<% feed = @feed %>
+
+<h2>
+ 
+  <span class='key'><%= feed.key %></span>
+
+  <a href='<%= feed.url %>'>
+     <b><%= feed.title %></b>
+   </a>
+
+  <!-- fix: use class format ?? -->
+  <span class='key'>
+     <%= feed.format %>
+  </span>
+
+
+   <a href='<%= feed.feed_url %>'>
+     <img src='<%= url( "/feed-icon-10x10.png" )%>'></img>
+   </a>
+
+  <span class='key'>
+    -   
+  Update:
+   <% if feed.fetched %>
+      <%= feed.fetched.strftime( '%b %d, %Y %H:%M' ) %>
+   <% else %>
+        ---
+   <% end %>
+  </span>
+</h2>
+
+<p>
+
+       <%# if feed.summary || feed.title2 %>
+       <% if feed.summary %>
+         <%= feed.summary %> <!-- rss/description -->
+         <%#= feed.title2 %>  <!-- atom/subtitle -->
+       <% else %>
+          --no-summary--
+       <% end %>
+</p>
+ 
+<p>  published: 
+     <% if feed.published? %>
+        <%= feed.published.strftime( '%b %d, %Y %H:%M' )  %>
+     <% else %>
+         ---
+     <% end %>
+
+      <br> updated:
+     <% if feed.touched? %>
+       <%= feed.touched.strftime( '%b %d, %Y %H:%M' ) %>
+     <% else %>
+        ---
+     <% end %>
+
+       <br> last-build:
+       <% if feed.built? %>
+        <%= feed.built.strftime( '%b %d, %Y %H:%M' ) %>
+     <% else %>
+        ---
+     <% end %>
+      
+      <br> generator:
+    <% if feed.generator %>
+       <%= feed.generator %>
+    <% else %>
+       ---
+    <% end %>
+</p>
+
+<p>  HTTP 
+      <!-- make <> 200,304  red/bold??? -->
+      <%= feed.http_code %>
+
+     | last-modified: 
+     
+     <% if feed.http_last_modified %>
+       <%= feed.http_last_modified %>
+     <% else %>
+         ---
+     <% end %>
+
+      | etag: 
+     <% if feed.http_etag %>
+       <%= feed.http_etag %>
+     <% else %>
+         ---
+     <% end %>
+</p>
+
+<%= render_items( feed.items.latest ) %>
+
+<h3>Source</h3>
+
+<% if feed.body %>
+  <pre><code><%= h prettify_xml( feed.body ) %>
+  </code></pre>
+<% end %>

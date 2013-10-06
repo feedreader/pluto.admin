@@ -3,18 +3,19 @@
 <h2><%= Site.count %> Sites</h2>
 
 <table>
-<% Site.all.each do |site| %>
+<% Site.order(:id).each do |site| %>
  <tr>
    <td class='key'><%= site.key %></td>
    <td><%= site.title %>
         <span class='count'>(<%= site.feeds.count %>)</span>
    </td>
    <td>
-     <ul>
-       <% site.feeds.each do |feed| %>
-         <li><%= feed.title %></li>
+       <% site.feeds.order(:title).each_with_index do |feed,index| %>
+         <% if index > 0 %>
+            &bull;
+         <% end %>
+         <%= link_to feed.title, feed_path( feed ) %>
        <% end %>
-     </ul>
    </td>
   </tr>
 <% end %>

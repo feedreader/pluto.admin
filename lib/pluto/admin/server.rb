@@ -50,11 +50,19 @@ class Server < Sinatra::Base
   def feeds_path
     "#{path_prefix}/feeds"
   end
+  
+  def feed_path( feed )
+    "#{path_prefix}/feed/#{feed.key}"
+  end
 
   def items_path
     "#{path_prefix}/items"
   end
-  
+
+  def item_path( item )
+    "#{path_prefix}/item/#{item.id}"
+  end
+
   def timeline_path
     "#{path_prefix}/time"
   end
@@ -67,6 +75,9 @@ class Server < Sinatra::Base
     url( '/' )
   end
 
+  def content_tag( tag, text )
+    "<#{tag}>#{text}</#{tag}>"
+  end
 
   def link_to( text, url, opts={} )
     attributes = ""
@@ -76,6 +87,38 @@ class Server < Sinatra::Base
     "<a href='#{url}' #{attributes}>#{text}</a>"
   end
 
+
+  def render_items( items, opts={} )
+    erb( '_items'.to_sym,
+         layout: false,
+         locals: {
+                    items: items,
+                    show_feed: opts[:show_feed].present?
+                  })
+  end
+
+  def prettify_xml( xml )
+    require 'rexml/document'
+    
+    begin
+      d = REXML::Document.new( xml )
+    
+      # d.write( pretty_xml="", 2 )
+      # pretty_xml  # return prettified xml
+    
+      formatter = REXML::Formatters::Pretty.new( 2 )  # indent=2
+      formatter.compact = true # This is the magic line that does what you need!
+      pretty_xml = formatter.write( d.root, "" )  # todo/checl: what's 2nd arg used for ??
+      pretty_xml
+    rescue Exception => ex
+      "warn: prettify_xml failed: #{ex}\n\n\n" + xml
+    end
+  end
+
+
+  def h( text )
+    Rack::Utils.escape_html(text)
+  end
 
   ##############################################
   # Controllers / Routing / Request Handlers
@@ -88,8 +131,18 @@ class Server < Sinatra::Base
     erb :sites   # needed or default fallthrough possible ???
   end
 
+  get '/feed/:key' do |key|
+    @feed = Feed.find_by_key!( key )
+    erb :feed
+  end
+
   get '/feeds' do
     erb :feeds   # needed or default fallthrough possible ???
+  end
+
+  get '/item/:id' do |id|
+    @item = Item.find( id )
+    erb :item
   end
 
   get '/items' do

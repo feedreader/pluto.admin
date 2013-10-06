@@ -1,0 +1,82 @@
+
+<% item = @item %>
+
+<p>
+  <%= link_to item.feed.title, feed_path( item.feed ) %> 
+</p>
+
+<h2>
+ <%= link_to item.title, item.url %>
+  
+  <!-- fix: use class format ?? -->
+  <span class='key'>
+     <%= item.feed.format %>
+  </span>
+
+   <a href='<%= item.feed.feed_url %>'>
+     <img src='<%= url( "/feed-icon-10x10.png" )%>'></img>
+   </a> 
+
+  <span class='key'>  
+  - 
+  Update: 
+    <% if item.fetched %>
+      <%= item.fetched.strftime( '%b %d, %Y %H:%M' ) %>
+    <% else %>
+        ---
+    <% end %>
+  </span>
+</h2>
+
+<p>
+ guid: <span class='key'><%= item.guid %></span>
+ 
+ <br>
+
+ published:
+     <% if item.published? %>
+        <%= item.published.strftime( '%b %d, %Y %H:%M' )  %>
+     <% else %>
+         ---
+     <% end %>
+ 
+ <br>
+  updated: 
+     <% if item.touched? %>
+       <%= item.touched.strftime( '%b %d, %Y %H:%M' ) %>
+     <% else %>
+        ---
+     <% end %>
+</p>
+
+
+<% if item.summary? %>
+  <h3>Summary
+   <span class='key'><%= item.summary.length %> bytes</span>
+  </h3>
+  <div>
+<pre><code><%= h item.summary %>
+</code></pre>
+  </div>
+<% else %>
+    <h3>Summary</h3>
+     <p>
+      --no-summary--
+     </p>
+<% end %>
+
+ 
+<% if item.content? %>
+  <h3>Content
+   <span class='key'><%= item.content.length %> bytes</span>
+  </h3>
+  <div>
+<pre><code><%= h item.content %>
+</code></pre>
+  </div>
+<% else %>
+   <h3>Content</h3>
+   <p>
+    --no-content--
+  </p>
+<% end %>

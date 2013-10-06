@@ -2,17 +2,16 @@
 <h2><%= Feed.count %> Feeds</h2>
 
 <table>
-<% Feed.latest.all.each do |feed| %>
+<% Feed.latest.each do |feed| %>
  <tr>
    <td class='key'><%= feed.key %></td>
    <td>
-       <a href='<%= feed.url %>'>
-         <b><%= feed.title %></b>
-       </a>
+      <%= link_to( content_tag( :b, feed.title ), feed_path( feed )) %>
        <span class='count'>(<%= feed.items.count %>)</span> <br>
-       <% if feed.summary || feed.title2 %>
+       <%# if feed.summary || feed.title2 %>
+       <% if feed.summary %>
          <%= feed.summary %> <!-- rss/description -->
-         <%= feed.title2 %>  <!-- atom/subtitle -->
+         <%#= feed.title2 %>  <!-- atom/subtitle -->
        <% else %>
           --no-summary--
        <% end %>
@@ -22,22 +21,22 @@
                            </a> 
    </td>
    <td>
-     <% if feed.published_at? %>
-        <%= feed.published_at.strftime( '%b %d, %Y %H:%M' )  %>
+     <% if feed.published? %>
+        <%= feed.published.strftime( '%b %d, %Y %H:%M' )  %>
      <% else %>
          --no-published--
      <% end %>
    </td>
    <td>
-     <% if feed.touched_at %>
-       <%= feed.touched_at.strftime( '%b %d, %Y %H:%M' ) %>
+     <% if feed.touched? %>
+       <%= feed.touched.strftime( '%b %d, %Y %H:%M' ) %>
      <% else %>
         --no-updated--
      <% end %>
    </td>
    <td>
-     <% if feed.built_at %>
-        <%= feed.built_at.strftime( '%b %d, %Y %H:%M' ) %>
+     <% if feed.built? %>
+        <%= feed.built.strftime( '%b %d, %Y %H:%M' ) %>
      <% else %>
         --no-last-build--
      <% end %>
@@ -50,13 +49,30 @@
     <% end %>
    </td>
    <td>
-    <% if feed.fetched_at %>
-      <%= feed.fetched_at.strftime( '%b %d, %Y %H:%M' ) %>
+    <% if feed.fetched %>
+      <%= feed.fetched.strftime( '%b %d, %Y %H:%M' ) %>
     <% else %>
         --no-fetched--
     <% end %>
    </td>
-   <td><%= feed.etag %></td>
+   <td>
+      <!-- make <> 200,304  red/bold??? -->
+      <%= feed.http_code %> 
+   </td>
+   <td>
+     <% if feed.http_etag %>
+       <%= feed.http_etag %>
+     <% else %>
+         --no-etag--
+     <% end %>
+   </td>
+   <td>
+     <% if feed.http_last_modified %>
+        <%= feed.http_last_modified %>
+     <% else %>
+         --no-last-modified--
+     <% end %>
+   </td>
  </tr>
 <% end %>
 </table>
