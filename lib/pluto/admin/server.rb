@@ -89,7 +89,7 @@ class Server < Sinatra::Base
 
 
   def render_items( items, opts={} )
-    erb( '_items'.to_sym,
+    erb( 'shared/_items'.to_sym,
          layout: false,
          locals: {
                     items: items,
