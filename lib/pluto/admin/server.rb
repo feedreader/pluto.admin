@@ -39,6 +39,11 @@ class Server < Sinatra::Base
   #################
   # Helpers
 
+  include TextUtils::DateHelper       # e.g. lets us use time_ago_in_words, etc.
+  include TextUtils::HypertextHelper  # e.g. lets us use link_to, sanitize, etc.
+  include TextUtils::XmlHelper        # e.g. lets us use prettify_xml etc.
+
+
   def path_prefix
     request.script_name   # request.env['SCRIPT_NAME']
   end
@@ -75,18 +80,6 @@ class Server < Sinatra::Base
     url( '/' )
   end
 
-  def content_tag( tag, text )
-    "<#{tag}>#{text}</#{tag}>"
-  end
-
-  def link_to( text, url, opts={} )
-    attributes = ""
-    opts.each do |key,value|
-      attributes << "#{key}='#{value}' "
-    end
-    "<a href='#{url}' #{attributes}>#{text}</a>"
-  end
-
 
   def render_items( items, opts={} )
     erb( 'shared/_items'.to_sym,
@@ -95,24 +88,6 @@ class Server < Sinatra::Base
                     items: items,
                     show_feed: opts[:show_feed].present?
                   })
-  end
-
-  def prettify_xml( xml )
-    require 'rexml/document'
-    
-    begin
-      d = REXML::Document.new( xml )
-    
-      # d.write( pretty_xml="", 2 )
-      # pretty_xml  # return prettified xml
-    
-      formatter = REXML::Formatters::Pretty.new( 2 )  # indent=2
-      formatter.compact = true # This is the magic line that does what you need!
-      pretty_xml = formatter.write( d.root, "" )  # todo/checl: what's 2nd arg used for ??
-      pretty_xml
-    rescue Exception => ex
-      "warn: prettify_xml failed: #{ex}\n\n\n" + xml
-    end
   end
 
 
