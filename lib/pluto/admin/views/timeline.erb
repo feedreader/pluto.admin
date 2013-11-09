@@ -2,7 +2,7 @@
 <h2>Timeline</h2>
 
 <table>
-<% Activitiy.order( 'created_at DESC' ).each do |acti| %>
+<% Activity.order( 'created_at DESC' ).each do |acti| %>
  <tr>
    <td><%= acti.text %></td>
    <td><%= acti.created_at.strftime( '%b %d, %Y %H:%M' ) %></td>
