@@ -7,7 +7,8 @@ require 'pluto/admin/version'  # let it always go first
 module PlutoAdmin
 
   def self.banner
-    "pluto-admin #{VERSION} on Ruby #{RUBY_VERSION} (#{RUBY_RELEASE_DATE}) [#{RUBY_PLATFORM}]"
+    ## todo: add RUBY_PATCHLEVEL or PATCH_LEVEL
+    "pluto-admin/#{VERSION} on Ruby #{RUBY_VERSION} (#{RUBY_RELEASE_DATE}) [#{RUBY_PLATFORM}]"
   end
 
   def self.root

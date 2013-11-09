@@ -2,17 +2,17 @@
 <h2>Timeline</h2>
 
 <table>
-<% Action.order( 'created_at DESC' ).each do |action| %>
+<% Activitiy.order( 'created_at DESC' ).each do |acti| %>
  <tr>
-   <td><%= action.title %></td>
-   <td><%= action.object %></td>
-   <td><%= action.created_at.strftime( '%b %d, %Y %H:%M' ) %></td>
+   <td><%= acti.text %></td>
+   <td><%= acti.created_at.strftime( '%b %d, %Y %H:%M' ) %></td>
    <td>
     <!-- only show if different from created_at -->
-    <% unless action.created_at == action.updated_at %>
-     <%= action.updated_at.strftime( '%b %d, %Y %H:%M' ) %>
+    <% unless acti.created_at == acti.updated_at %>
+     <%= acti.updated_at.strftime( '%b %d, %Y %H:%M' ) %>
     <% end %>
    </td>
  </tr>
 <% end %>
 </table>
+
