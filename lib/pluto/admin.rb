@@ -1,5 +1,5 @@
 
-require 'pluto'
+require 'pluto/models'
 
 require 'pluto/admin/version'  # let it always go first
 

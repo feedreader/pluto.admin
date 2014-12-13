@@ -15,17 +15,17 @@ Hoe.spec 'pluto-admin' do
 
   # switch extension to .markdown for gihub formatting
   self.readme_file  = 'README.md'
-  self.history_file = 'History.md'
+  self.history_file = 'HISTORY.md'
 
   self.extra_deps = [
-    ['logutils', '>= 0.5']
-    ## todo: add pluto dep ?? why? why not?
+    ['logutils',     '>= 0.6.1'],
+    ['pluto-models', '>= 1.2.3'],
   ]
 
   self.licenses = ['Public Domain']
 
   self.spec_extras = {
-   :required_ruby_version => '>= 1.9.2'
+    required_ruby_version: '>= 1.9.2'
   }
 
 
