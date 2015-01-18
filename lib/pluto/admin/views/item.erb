@@ -19,7 +19,7 @@
 
   <span class='key'>  
   - 
-  Update: 
+  Last Fetched: 
     <% if item.fetched %>
       <%= item.fetched.strftime( '%b %d, %Y %H:%M' ) %>
     <% else %>
@@ -30,22 +30,20 @@
 
 <p>
  guid: <span class='key'><%= item.guid %></span>
- 
- <br>
 
- published:
+ <br>
+   updated: 
+     <% if item.updated? %>
+       <%= item.updated.strftime( '%b %d, %Y %H:%M' ) %>
+     <% else %>
+        ---
+     <% end %>
+ <br>
+   published:
      <% if item.published? %>
         <%= item.published.strftime( '%b %d, %Y %H:%M' )  %>
      <% else %>
          ---
-     <% end %>
- 
- <br>
-  updated: 
-     <% if item.touched? %>
-       <%= item.touched.strftime( '%b %d, %Y %H:%M' ) %>
-     <% else %>
-        ---
      <% end %>
 </p>
 

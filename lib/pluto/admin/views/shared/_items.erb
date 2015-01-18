@@ -30,17 +30,17 @@
    <td class='key'><%= item.guid %></td>
 
    <td>
+     <% if item.updated? %>
+       <%= item.updated.strftime( '%b %d, %Y %H:%M' ) %>
+     <% else %>
+        --no-updated--
+     <% end %>
+   </td>
+   <td>
      <% if item.published? %>
         <%= item.published.strftime( '%b %d, %Y %H:%M' )  %>
      <% else %>
          --no-published--
-     <% end %>
-   </td>
-   <td>
-     <% if item.touched? %>
-       <%= item.touched.strftime( '%b %d, %Y %H:%M' ) %>
-     <% else %>
-        --no-updated--
      <% end %>
    </td>
    

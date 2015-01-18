@@ -18,8 +18,8 @@ Hoe.spec 'pluto-admin' do
   self.history_file = 'HISTORY.md'
 
   self.extra_deps = [
-    ['logutils',     '>= 0.6.1'],
-    ['pluto-models', '>= 1.2.3'],
+    ['pluto-models', '>= 1.4.0'],
+    ['sinatra']
   ]
 
   self.licenses = ['Public Domain']
@@ -27,6 +27,5 @@ Hoe.spec 'pluto-admin' do
   self.spec_extras = {
     required_ruby_version: '>= 1.9.2'
   }
-
 
 end

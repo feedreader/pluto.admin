@@ -6,10 +6,6 @@
 #   run PlutoAdmin::Server
 
 
-# 3rd party libs/gems
-
-require 'sinatra/base'
-
 
 module PlutoAdmin
 

@@ -21,24 +21,17 @@
                            </a> 
    </td>
    <td>
-     <% if feed.published? %>
-        <%= feed.published.strftime( '%b %d, %Y %H:%M' )  %>
-     <% else %>
-         --no-published--
-     <% end %>
-   </td>
-   <td>
-     <% if feed.touched? %>
-       <%= feed.touched.strftime( '%b %d, %Y %H:%M' ) %>
+     <% if feed.updated? %>
+       <%= feed.updated.strftime( '%b %d, %Y %H:%M' ) %>
      <% else %>
         --no-updated--
      <% end %>
    </td>
    <td>
-     <% if feed.built? %>
-        <%= feed.built.strftime( '%b %d, %Y %H:%M' ) %>
+     <% if feed.published? %>
+        <%= feed.published.strftime( '%b %d, %Y %H:%M' )  %>
      <% else %>
-        --no-last-build--
+         --no-published--
      <% end %>
    </td>
    <td>

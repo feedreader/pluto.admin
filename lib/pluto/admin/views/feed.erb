@@ -20,8 +20,8 @@
    </a>
 
   <span class='key'>
-    -   
-  Update:
+    -  
+  Last Fetched:
    <% if feed.fetched %>
       <%= feed.fetched.strftime( '%b %d, %Y %H:%M' ) %>
    <% else %>
@@ -41,26 +41,19 @@
        <% end %>
 </p>
  
-<p>  published: 
+<p>  updated:
+     <% if feed.updated? %>
+       <%= feed.updated.strftime( '%b %d, %Y %H:%M' ) %>
+     <% else %>
+        ---
+     <% end %>
+
+      <br>published:
      <% if feed.published? %>
         <%= feed.published.strftime( '%b %d, %Y %H:%M' )  %>
      <% else %>
          ---
-     <% end %>
-
-      <br> updated:
-     <% if feed.touched? %>
-       <%= feed.touched.strftime( '%b %d, %Y %H:%M' ) %>
-     <% else %>
-        ---
-     <% end %>
-
-       <br> last-build:
-       <% if feed.built? %>
-        <%= feed.built.strftime( '%b %d, %Y %H:%M' ) %>
-     <% else %>
-        ---
-     <% end %>
+     <% end %> 
       
       <br> generator:
     <% if feed.generator %>
